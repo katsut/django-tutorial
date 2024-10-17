@@ -1,5 +1,10 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the event index.")
+    return render(request, "event/index.html")
+
+
+def create(request):
+    return HttpResponse("succeed")
