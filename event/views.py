@@ -1,5 +1,10 @@
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
+from event.models import Event
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
 def index(request):
@@ -7,4 +12,7 @@ def index(request):
 
 
 def create(request):
-    return HttpResponse("succeed")
+    name = request.POST["name"]
+    event = Event(name=name, description="test").save()
+    logger.info(event)
+    return HttpResponseRedirect(reverse("event:index"))
