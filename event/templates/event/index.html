@@ -4,10 +4,16 @@
 <form action="{% url 'event:create' %}" method="post">
     {% csrf_token %}
     <div class="mb-3">
-        <label for="name" class="form-label">イベント名</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
-
-
+        <div class="row">
+            <div class="col">
+                <label for="name" class="form-label">イベント名</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="col">
+                <label for="name" class="form-label">候補</label>
+                <textarea class="form-control" id="datelist" name="datelist"></textarea>
+            </div>
+        </div>
     </div>
     <input type="submit" value="Create" class="btn btn-primary">
 </form>
@@ -27,7 +33,7 @@
 
             {% for event in events %}
             <tr>
-                <th scope="row">{{ event.id }} </th>
+                <th scope="row"><a href="{% url 'event:edit' event.id %}">{{ event.id }}</a></th>
                 <td><a href="{% url 'event:edit' event.id %}">{{ event.name }}</a></td>
                 <td>{{ event.description }}</td>
                 <td>

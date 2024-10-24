@@ -10,3 +10,11 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Choice(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="choices")
+    date = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.date

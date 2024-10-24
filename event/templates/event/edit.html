@@ -15,6 +15,19 @@
             <option value="0" {% if not event.published %} selected {% endif %}>非公開</option>
         </select>
     </div>
+    <div class="mb-3">
+        {% if event.choices.all %}
+        <ul>
+            {% for choice in event.choices.all %}
+            <li>
+                <input type="text" class="form-control" id="choice-{{ choice.id }}" name="choice-{{ choice.id }}"
+                    value="{{ choice.date }}">
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
     <input type="submit" value="Update" class="btn btn-primary">
 </form>
 
