@@ -20,6 +20,7 @@
                 <th scope="col">#</th>
                 <th scope="col">イベント名</th>
                 <th scope="col">内容</th>
+                <th scope="col">状態</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,13 @@
                 <th scope="row">{{ event.id }} </th>
                 <td>{{ event.name }} </td>
                 <td>{{ event.description }} </td>
+                <td>
+                    {% if event.published %}
+                    公開
+                    {% else %}
+                    非公開
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
