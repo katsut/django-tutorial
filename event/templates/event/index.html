@@ -28,8 +28,8 @@
             {% for event in events %}
             <tr>
                 <th scope="row">{{ event.id }} </th>
-                <td>{{ event.name }} </td>
-                <td>{{ event.description }} </td>
+                <td><a href="{% url 'event:edit' event.id %}">{{ event.name }}</a></td>
+                <td>{{ event.description }}</td>
                 <td>
                     {% if event.published %}
                     公開

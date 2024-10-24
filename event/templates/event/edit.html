@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="{% url 'event:update' event.id %}" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="name" class="form-label">イベント名</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp"
+            value="{{ event.name }}">
+        <label for="description" class="form-label">内容</label>
+        <textarea class="form-control" id="description" name="description" rows="3">{{ event.description }}</textarea>
+        <label for="published" class="form-label">状態</label>
+        <select class="form-select" id="published" name="published">
+            <option value="1" {% if event.published %} selected {% endif %}>公開</option>
+            <option value="0" {% if not event.published %} selected {% endif %}>非公開</option>
+        </select>
+    </div>
+    <input type="submit" value="Update" class="btn btn-primary">
+</form>
+
+{% endblock %}
