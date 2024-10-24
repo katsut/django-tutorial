@@ -5,3 +5,14 @@
         <input type="submit" value="Create">
     </fieldset>
 </form>
+
+<div>
+    {% if events %}
+    <ul>
+        {% for event in events %}
+        <li>{{ event.id }} {{ event.name }} {{ event.description }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+</div>

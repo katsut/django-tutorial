@@ -8,7 +8,8 @@ logger = getLogger(__name__)
 
 
 def index(request):
-    return render(request, "event/index.html")
+    events = Event.objects.all()
+    return render(request, "event/index.html", {"events": events})
 
 
 def create(request):
