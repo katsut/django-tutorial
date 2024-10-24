@@ -1,18 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
 <form action="{% url 'event:create' %}" method="post">
     {% csrf_token %}
-    <fieldset>
-        <input type="text" name="name" id="name" value="">
-        <input type="submit" value="Create">
-    </fieldset>
+    <div class="mb-3">
+        <label for="name" class="form-label">イベント名</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+
+
+    </div>
+    <input type="submit" value="Create" class="btn btn-primary">
 </form>
 
 <div>
     {% if events %}
-    <ul>
-        {% for event in events %}
-        <li>{{ event.id }} {{ event.name }} {{ event.description }}</li>
-        {% endfor %}
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">イベント名</th>
+                <th scope="col">内容</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for event in events %}
+            <tr>
+                <th scope="row">{{ event.id }} </th>
+                <td>{{ event.name }} </td>
+                <td>{{ event.description }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     {% endif %}
 
 </div>
+
+{% endblock %}
