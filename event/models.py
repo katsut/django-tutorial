@@ -18,3 +18,13 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.date
+
+
+class Vote(models.Model):
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE, related_name="votes")
+    name = models.CharField(max_length=200)
+    state = models.IntegerField(required=True)  # 0: ✕ , 1: △, 2: ◯
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.ip
