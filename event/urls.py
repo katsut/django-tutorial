@@ -7,5 +7,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("create/", views.create, name="create"),
     path("<int:event_id>/", views.edit, name="edit"),
-    path("<int:event_id>/update", views.update, name="update"),
+    path("<int:event_id>/update/", views.update, name="update"),
 ]

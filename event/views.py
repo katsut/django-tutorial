@@ -21,12 +21,19 @@ def create(request):
         [Choice(event=event, date=date) for date in datelist.split("\n")]
     )
     logger.info(event)
+    logger.info(choices)
     return HttpResponseRedirect(reverse("event:index"))
 
 
 def edit(request, event_id):
     event = Event.objects.get(id=event_id)
-    return render(request, "event/edit.html", {"event": event})
+    datelist = []
+    for choice in event.choices.all():
+        datelist.append(choice.date)
+
+    return render(
+        request, "event/edit.html", {"event": event, "datelist": "\n".join(datelist)}
+    )
 
 
 def update(request, event_id):
@@ -34,21 +41,14 @@ def update(request, event_id):
     event.name = request.POST["name"]
     event.description = request.POST["description"]
     event.published = request.POST["published"]
+    datelist = request.POST["datelist"]
     event.save()
 
     choices = event.choices.all()
     for choice in choices:
-        date = request.POST.get(f"choice-{choice.id}")
-        if choice:
-            choice.date = date
-            choice.save()
-        else:
-            choice.delete()
-    new_choices = request.POST.get("new_choices")
-    if new_choices:
-        new_choices = new_choices.split("\n")
-        choices = Choice.objects.bulk_create(
-            [Choice(event=event, date=date) for date in new_choices]
-        )
+        Choice.delete(choice)
 
+    Choice.objects.bulk_create(
+        [Choice(event=event, date=date) for date in datelist.split("\n")]
+    )
     return HttpResponseRedirect(reverse("event:index"))
