@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # TODO アプリをインストール
+    "todo.apps.TodoConfig",
     "polls.apps.PollsConfig",
     "event.apps.EventConfig",
     "django.contrib.admin",
