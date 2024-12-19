@@ -14,8 +14,10 @@ def index(request):
 
 def create(request):
     name = request.POST["name"]
+
+    description = request.POST["description"]
     datelist = request.POST["datelist"]
-    event = Event(name=name, description="test")
+    event = Event(name=name, description=description)
     event.save()
     choices = Choice.objects.bulk_create(
         [Choice(event=event, date=date) for date in datelist.split("\n")]
