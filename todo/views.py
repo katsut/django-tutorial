@@ -7,7 +7,6 @@ from todo import models
 
 
 def index(request):
-
     # データを撮ってくる
     all_todo = models.Todo.objects.all()
     # htmlにわたすデータ
@@ -27,7 +26,19 @@ def create(request):
 
 def edit(request, todo_id):
     target_todo = models.Todo.objects.get(id=todo_id)
-    return HttpResponse(target_todo)
+    context = {
+        'todo': target_todo
+    }
+    return render(request, 'edit.html', context)
+
+def update(request, todo_id):
+    # 今のデータを取得
+    target_todo = models.Todo.objects.get(id=todo_id)
+    
+    # データを登録
+    target_todo.title = request.POST.get('title')
+    target_todo.save()
+    return HttpResponseRedirect(reverse("todo:index"))
 
 
 def delete(request, todo_id):
