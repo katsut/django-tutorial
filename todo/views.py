@@ -33,6 +33,7 @@ def create(request):
     title = request.POST.get("title")
     new_todo = models.Todo()
     new_todo.title = title
+    new_todo.created_by = request.user
     new_todo.save()
     return HttpResponseRedirect(reverse("todo:index"))
 

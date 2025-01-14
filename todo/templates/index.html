@@ -16,8 +16,11 @@
             {% for todo in todos %}
             <li>
                 <span class="id">{{todo.id}}</span><span class="title">{{todo.title}}</span>
-                <div class="actions"><a href="{% url 'todo:edit' todo.id %}">編集</a></div>
-                <div class="actions"><a href="{% url 'todo:delete' todo.id %}">削除</a></div>
+                <span class="ms-2">{{todo.created_at|date:"Y-m-d"}}</span>
+                <span class="ms-2">{{todo.created_by|default_if_none:"Guest"}}</span>
+
+                <div class="actions ms-2"><a href="{% url 'todo:edit' todo.id %}">編集</a></div>
+                <div class="actions ms-2"><a href=" {% url 'todo:delete' todo.id %}">削除</a></div>
             </li>
             {% endfor %}
         </ul>
