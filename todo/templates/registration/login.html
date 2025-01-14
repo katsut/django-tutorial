@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class='container'>
+    <div class='content'>
+        {% if message %}
+        <ul>
+            <li>{{ message }}</li>
+        </ul>
+        {% endif %}
+        <!-- エラー表示 -->
+        {% if form.errors %}
+        <ul>
+            {% for field, errors in form.errors.items %}
+            <li>{{ field.label }}: {{ errors|join:", " }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

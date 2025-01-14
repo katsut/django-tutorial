@@ -7,6 +7,7 @@ from logging import getLogger
 logger = getLogger(__name__)
 
 
+
 def index(request):
     events = Event.objects.all()
     return render(request, "event/index.html", {"events": events})

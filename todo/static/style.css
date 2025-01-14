@@ -111,7 +111,7 @@
 }
 
 /* リスト全体のスタイル */
-ul {
+.content ul {
     list-style: none;
     /* マーカーを消す */
     margin: 0;
@@ -125,7 +125,7 @@ ul {
 }
 
 /* 各リスト項目のスタイル */
-li {
+.content li {
     display: flex;
     /* 横並び */
     align-items: center;
@@ -136,13 +136,13 @@ li {
     /* 下線 */
 }
 
-li:last-child {
+.content li:last-child {
     border-bottom: none;
     /* 最後の要素の線を消す */
 }
 
 /* 各要素のスタイル */
-li .id {
+.content li .id {
     width: 50px;
     /* 固定幅 */
     text-align: center;
@@ -151,7 +151,7 @@ li .id {
     /* 太字 */
 }
 
-li .title {
+.content li .title {
     flex: 1;
     /* 残りの幅を占有 */
     padding-left: 15px;
@@ -161,7 +161,7 @@ li .title {
 }
 
 /* リンクを右揃えにする */
-li .actions {
+.content li .actions {
     display: flex;
     /* 横並び */
     gap: 10px;
@@ -170,7 +170,7 @@ li .actions {
     /* 右揃え */
 }
 
-li a {
+.content li a {
     color: #007bff;
     /* リンクの色 */
     text-decoration: none;
@@ -179,7 +179,7 @@ li a {
     /* 太字 */
 }
 
-li a:hover {
+.content li a:hover {
     color: #0056b3;
     /* ホバー時の色 */
 }
